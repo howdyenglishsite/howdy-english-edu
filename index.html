@@ -55,7 +55,7 @@ body {
 .sidebar-decoration-left { left: 0; border-radius: 0 15px 15px 0; }
 .sidebar-decoration-right { right: 0; border-radius: 15px 0 0 15px; }
 
-/* --- الغلاف مع لمعان ووضوح 98% --- */
+/* --- الغلاف --- */
 .cover {
   position: relative;
   width: 100%;
@@ -66,51 +66,46 @@ body {
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
-
 .cover img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: brightness(90%) saturate(125%) contrast(110%);
-  image-rendering: auto;
-  backface-visibility: hidden;
-  transform: translateZ(0);
   transition: transform 0.3s ease, filter 0.3s ease;
 }
-
-/* --- Overlay لمعان متحرك --- */
 .cover::after {
   content: "";
   position: absolute;
   top: -50%; left: -50%;
   width: 200%; height: 200%;
-  background: linear-gradient(120deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.0) 100%);
+  background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
   animation: shine 4s linear infinite;
   pointer-events: none;
 }
-
 @keyframes shine {
   0% { transform: rotate(0deg) translateX(-100%) translateY(-100%); }
   50% { transform: rotate(0deg) translateX(0%) translateY(0%); }
   100% { transform: rotate(0deg) translateX(100%) translateY(100%); }
 }
 
-/* --- الأكورديون --- */
+/* --- الأكورديون بعرض كامل --- */
 .accordion {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: white;
-  cursor: pointer;
+  width: 95%;
+  max-width: 1200px;
   padding: 14px 20px;
-  width: 90%;
-  border: none;
+  margin: 10px auto;
+  cursor: pointer;
   text-align: right;
-  outline: none;
   font-size: 18px;
-  margin-top: 10px;
+  border: none;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.4);
-  transition: all 0.3s ease;
   position: relative;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  box-sizing: border-box;
+  line-height: 1.2;
 }
 .accordion::after {
   content: "▶";
@@ -129,14 +124,19 @@ body {
   box-shadow: 0 8px 12px rgba(0,0,0,0.5);
   background: linear-gradient(135deg, #ff416c, #ff4b2b);
 }
+
+/* --- لوحات الأكورديون --- */
 .panel {
-  padding: 0 20px;
   display: none;
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto 10px auto;
+  padding: 0 20px;
   background: #000000bb;
   border-radius: 12px;
-  margin-bottom: 10px;
   box-shadow: inset 0 0 15px rgba(255,255,255,0.1);
   backdrop-filter: blur(4px);
+  box-sizing: border-box;
 }
 .panel .accordion {
   background: linear-gradient(135deg, #11998e, #38ef7d);
@@ -153,16 +153,16 @@ body {
   margin-top: 5px;
 }
 
-/* --- النصوص --- */
-p, h3 {
+/* --- النصوص العادية --- */
+p {
   font-family: 'Comic Sans MS', cursive;
-  color: #f0f8ff;
-  text-shadow: 1px 1px 2px #000;
+  color: #FFD700; /* أصفر بلوري قاتل */
+  text-shadow: 1px 1px 2px #000; 
   margin: 6px 0;
 }
 
-/* --- الكتابة المتوهجة --- */
-.chalk {
+/* --- العناوين المرقمة المتوهجة --- */
+h3.chalk {
   overflow: hidden;
   white-space: pre-wrap;
   display: inline-block;
@@ -170,7 +170,7 @@ p, h3 {
   text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
   position: relative;
 }
-.chalk.typing {
+h3.chalk.typing {
   animation: typing 2s steps(50, end) forwards, glow 1.5s ease-in-out infinite alternate;
 }
 @keyframes typing {
@@ -209,14 +209,11 @@ a { text-decoration: none; color: inherit; }
 </head>
 <body>
 
-<!-- زخارف جانبية -->
 <div class="sidebar-decoration-left"></div>
 <div class="sidebar-decoration-right"></div>
 
-<!-- العنوان الرئيسي -->
 <h1 class="live-title">- Official page of the channel HOWDY ENGLISH -</h1>
 
-<!-- الغلاف -->
 <div class="cover">
   <img src="Phoenix_10_3D_words_Howdy_English_made_of_glossy_transparent_g_2 (2).jpg" 
        alt="Phoenix 3D Words Howdy English">
@@ -231,70 +228,67 @@ a { text-decoration: none; color: inherit; }
 <button class="accordion">التحيات</button>
 <div class="panel">
 
-    <h3 class="chalk">1️⃣ التحيات اليومية العامة</h3>
-    <p class="chalk">Hello → مرحباً</p>
-    <p class="chalk">Hi → أهلاً</p>
-    <p class="chalk">Hey → هاي (غير رسمي جداً)</p>
-    <p class="chalk">Good morning → صباح الخير</p>
-    <p class="chalk">Good afternoon → مساء الخير (من الظهر حتى قبل المغرب)</p>
-    <p class="chalk">Good evening → مساء الخير (بعد المغرب)</p>
-    <p class="chalk">Good night → تصبح على خير (تستخدم عند وداع شخص قبل النوم)</p>
-    <p class="chalk">How are you? → كيف حالك؟</p>
-    <p class="chalk">How’s it going? → كيف الأمور؟ (غير رسمي)</p>
-    <p class="chalk">How do you do? → كيف حالك؟ (رسمي جداً)</p>
-    <p class="chalk">What’s up? / Wassup? → ما الأخبار؟ / شو في؟ (غير رسمي)</p>
+<h3 class="chalk typing">1️⃣ التحيات اليومية العامة</h3>
+<p>Hello → مرحباً</p>
+<p>Hi → أهلاً</p>
+<p>Hey → هاي (غير رسمي جداً)</p>
+<p>Good morning → صباح الخير</p>
+<p>Good afternoon → مساء الخير (من الظهر حتى قبل المغرب)</p>
+<p>Good evening → مساء الخير (بعد المغرب)</p>
+<p>Good night → تصبح على خير (تستخدم عند وداع شخص قبل النوم)</p>
+<p>How are you? → كيف حالك؟</p>
+<p>How’s it going? → كيف الأمور؟ (غير رسمي)</p>
+<p>How do you do? → كيف حالك؟ (رسمي جداً)</p>
+<p>What’s up? / Wassup? → ما الأخبار؟ / شو في؟ (غير رسمي)</p>
 
-    <h3 class="chalk">2️⃣ تحيات غير رسمية بين الأصدقاء</h3>
-    <p class="chalk">Yo → هاي / أهلاً (غير رسمي جداً، بين شباب)</p>
-    <p class="chalk">Sup → اختصار لـ “What’s up?”</p>
-    <p class="chalk">Hiya → أهلاً (غير رسمي)</p>
-    <p class="chalk">Hey there → مرحباً هناك</p>
-    <p class="chalk">Long time no see → لم نلتق منذ فترة</p>
-    <p class="chalk">Howdy → مرحباً (شائع في الولايات المتحدة، له طابع ودود)</p>
-    <p class="chalk">How’s everything? → كيف كل شيء؟</p>
+<h3 class="chalk typing">2️⃣ تحيات غير رسمية بين الأصدقاء</h3>
+<p>Yo → هاي / أهلاً (غير رسمي جداً، بين شباب)</p>
+<p>Sup → اختصار لـ “What’s up?”</p>
+<p>Hiya → أهلاً (غير رسمي)</p>
+<p>Hey there → مرحباً هناك</p>
+<p>Long time no see → لم نلتق منذ فترة</p>
+<p>Howdy → مرحباً (شائع في الولايات المتحدة، له طابع ودود)</p>
+<p>How’s everything? → كيف كل شيء؟</p>
 
-    <h3 class="chalk">3️⃣ تحيات رسمية أو مهذبة</h3>
-    <p class="chalk">Greetings → تحية رسمية</p>
-    <p class="chalk">Good to see you → سررت برؤيتك</p>
-    <p class="chalk">Pleased to meet you → سعيد بلقائك (أول لقاء رسمي)</p>
-    <p class="chalk">How have you been? → كيف كنت منذ آخر لقاء؟</p>
-    <p class="chalk">It’s a pleasure to meet you → تشرفت بلقائك</p>
+<h3 class="chalk typing">3️⃣ تحيات رسمية أو مهذبة</h3>
+<p>Greetings → تحية رسمية</p>
+<p>Good to see you → سررت برؤيتك</p>
+<p>Pleased to meet you → سعيد بلقائك (أول لقاء رسمي)</p>
+<p>How have you been? → كيف كنت منذ آخر لقاء؟</p>
+<p>It’s a pleasure to meet you → تشرفت بلقائك</p>
 
-    <h3 class="chalk">4️⃣ تحيات صباحية/مسائية محددة</h3>
-    <p class="chalk">Morning! → صباح الخير (غير رسمي)</p>
-    <p class="chalk">Afternoon! → مساء الخير (غير رسمي)</p>
-    <p class="chalk">Evening! → مساء الخير (غير رسمي)</p>
-    <p class="chalk">Rise and shine! → استيقظ وتألّق! (مرح صباحي)</p>
-    <p class="chalk">Have a nice day! → أتمنى لك يوماً سعيداً</p>
+<h3 class="chalk typing">4️⃣ تحيات صباحية/مسائية محددة</h3>
+<p>Morning! → صباح الخير (غير رسمي)</p>
+<p>Afternoon! → مساء الخير (غير رسمي)</p>
+<p>Evening! → مساء الخير (غير رسمي)</p>
+<p>Rise and shine! → استيقظ وتألّق! (مرح صباحي)</p>
+<p>Have a nice day! → أتمنى لك يوماً سعيداً</p>
 
-    <h3 class="chalk">5️⃣ تحيات وداع</h3>
-    <p class="chalk">Bye / Goodbye → وداعاً</p>
-    <p class="chalk">See you → أراك لاحقاً</p>
-    <p class="chalk">See you later → أراك لاحقاً</p>
-    <p class="chalk">See you soon → أراك قريباً</p>
-    <p class="chalk">Take care → اعتنِ بنفسك</p>
-    <p class="chalk">Catch you later → أراك لاحقاً (غير رسمي)</p>
-    <p class="chalk">Farewell → وداعاً (رسمي وأدبي)</p>
-    <p class="chalk">Have a good one → أتمنى لك وقتاً طيباً (غير رسمي)</p>
+<h3 class="chalk typing">5️⃣ تحيات وداع</h3>
+<p>Bye / Goodbye → وداعاً</p>
+<p>See you → أراك لاحقاً</p>
+<p>See you later → أراك لاحقاً</p>
+<p>See you soon → أراك قريباً</p>
+<p>Take care → اعتنِ بنفسك</p>
+<p>Catch you later → أراك لاحقاً (غير رسمي)</p>
+<p>Farewell → وداعاً (رسمي وأدبي)</p>
+<p>Have a good one → أتمنى لك وقتاً طيباً (غير رسمي)</p>
 
-    <h3 class="chalk">6️⃣ تحيات للمكالمات أو الرسائل</h3>
-    <p class="chalk">Hello, this is [Name] speaking → مرحباً، معك [الاسم] (للمكالمات)</p>
-    <p class="chalk">Hi, how are you doing? → أهلاً، كيف حالك؟</p>
-    <p class="chalk">Hey! Long time no chat → هاي! لم نتحدث منذ فترة</p>
-    <p class="chalk">Greetings of the day → تحية اليوم (رسمي، للبريد)</p>
+<h3 class="chalk typing">6️⃣ تحيات للمكالمات أو الرسائل</h3>
+<p>Hello, this is [Name] speaking → مرحباً، معك [الاسم] (للمكالمات)</p>
+<p>Hi, how are you doing? → أهلاً، كيف حالك؟</p>
+<p>Hey! Long time no chat → هاي! لم نتحدث منذ فترة</p>
+<p>Greetings of the day → تحية اليوم (رسمي، للبريد)</p>
 
-    <!-- الفيديو -->
-    <div class="video">
-        <a href="https://www.youtube.com/watch?v=NrQUvUcNsnw&t=14s" target="_blank">
-            <img src="https://img.youtube.com/vi/NrQUvUcNsnw/hqdefault.jpg" alt="فيديو التحيات">
-        </a>
-        <p>اضغط على الصورة لمشاهدة الفيديو على YouTube</p>
-    </div>
-
+<div class="video">
+    <a href="https://www.youtube.com/watch?v=NrQUvUcNsnw&t=14s" target="_blank">
+        <img src="https://img.youtube.com/vi/NrQUvUcNsnw/hqdefault.jpg" alt="فيديو التحيات">
+    </a>
+    <p>اضغط على الصورة لمشاهدة الفيديو على YouTube</p>
 </div>
 
+</div>
     </div>
-
 </div>
 
 <script>
@@ -304,8 +298,9 @@ for (var i = 0; i < acc.length; i++) {
     this.classList.toggle("active");
     var panel = this.nextElementSibling;
     panel.style.display = (panel.style.display === "block") ? "none" : "block";
-    var chalkTexts = panel.querySelectorAll('.chalk');
-    chalkTexts.forEach(function(el) {
+    
+    var chalkHeaders = panel.querySelectorAll('h3.chalk');
+    chalkHeaders.forEach(function(el) {
       el.classList.remove('typing');
       void el.offsetWidth;
       el.classList.add('typing');

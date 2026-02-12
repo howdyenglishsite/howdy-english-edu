@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Official site of the channel HOWDY ENGLISH</title>
+<style>
+/* --- إعدادات عامة --- */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(160deg, #1e3c72, #2a5298);
+  color: #f0f8ff;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* --- العنوان الحيوي في الوسط --- */
+.live-title {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px 0;
+  background: linear-gradient(90deg, #00ff00, #00ffff, #00ff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 300% 100%;
+  animation: greenWave 5s linear infinite, floatWave 3s ease-in-out infinite;
+  text-shadow: 0 0 15px #00ff00, 0 0 25px #00ffff, 0 0 35px #00cc99;
+  display: inline-block;
+}
+@keyframes greenWave {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes floatWave {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+/* --- زخارف جانبية --- */
+.sidebar-decoration-left, .sidebar-decoration-right {
+  position: fixed;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(to bottom, #6a11cb, #2575fc);
+  opacity: 0.25;
+  z-index: 1;
+}
+.sidebar-decoration-left { left: 0; border-radius: 0 15px 15px 0; }
+.sidebar-decoration-right { right: 0; border-radius: 15px 0 0 15px; }
+
+/* --- الغلاف مع لمعان ووضوح 98% --- */
+.cover {
+  position: relative;
+  width: 100%;
+  max-width: 820px; 
+  height: 360px; 
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(90%) saturate(125%) contrast(110%);
+  image-rendering: auto;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* --- Overlay لمعان متحرك --- */
+.cover::after {
+  content: "";
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.0) 100%);
+  animation: shine 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% { transform: rotate(0deg) translateX(-100%) translateY(-100%); }
+  50% { transform: rotate(0deg) translateX(0%) translateY(0%); }
+  100% { transform: rotate(0deg) translateX(100%) translateY(100%); }
+}
+
+/* --- الأكورديون --- */
+.accordion {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  cursor: pointer;
+  padding: 14px 20px;
+  width: 90%;
+  border: none;
+  text-align: right;
+  outline: none;
+  font-size: 18px;
+  margin-top: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
+  position: relative;
+}
+.accordion::after {
+  content: "▶";
+  font-size: 18px;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+}
+.accordion.active::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+.accordion:hover, .accordion.active {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.5);
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
+.panel {
+  padding: 0 20px;
+  display: none;
+  background: #000000bb;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: inset 0 0 15px rgba(255,255,255,0.1);
+  backdrop-filter: blur(4px);
+}
+.panel .accordion {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+  margin-top: 10px;
+  font-size: 16px;
+}
+.panel .accordion:hover, .panel .accordion.active {
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+}
+.panel .panel {
+  background: #000000aa;
+  padding-left: 15px;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+/* --- النصوص --- */
+p, h3 {
+  font-family: 'Comic Sans MS', cursive;
+  color: #f0f8ff;
+  text-shadow: 1px 1px 2px #000;
+  margin: 6px 0;
+}
+
+/* --- الكتابة المتوهجة --- */
+.chalk {
+  overflow: hidden;
+  white-space: pre-wrap;
+  display: inline-block;
+  color: #0f0;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+  position: relative;
+}
+.chalk.typing {
+  animation: typing 2s steps(50, end) forwards, glow 1.5s ease-in-out infinite alternate;
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+@keyframes glow {
+  from { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff; color: #0f0; }
+  to { text-shadow: 0 0 15px #0ff, 0 0 30px #0ff; color: #0c0; }
+}
+
+/* --- الفيديو --- */
+.video {
+  margin: 20px 0;
+  text-align: center;
+  perspective: 1000px;
+}
+.video img {
+  max-width: 100%;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+.video img:hover {
+  transform: rotateY(15deg) scale(1.05);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.6);
+}
+.video p {
+  text-align: center;
+  font-style: italic;
+  color: #ddd;
+  margin-top: 10px;
+}
+a { text-decoration: none; color: inherit; }
+</style>
+</head>
+<body>
+
+<!-- زخارف جانبية -->
+<div class="sidebar-decoration-left"></div>
+<div class="sidebar-decoration-right"></div>
+
+<!-- العنوان الرئيسي -->
+<h1 class="live-title">- Official page of the channel HOWDY ENGLISH -</h1>
+
+<!-- الغلاف -->
+<div class="cover">
+  <img src="Phoenix_10_3D_words_Howdy_English_made_of_glossy_transparent_g_2 (2).jpg" 
+       alt="Phoenix 3D Words Howdy English">
+</div>
+
+<!-- الأساسيات -->
+<button class="accordion">الأساسيات</button>
+<div class="panel">
+
+    <button class="accordion">المفردات</button>
+    <div class="panel">
+<button class="accordion">التحيات</button>
+<div class="panel">
+
+    <h3 class="chalk">1️⃣ التحيات اليومية العامة</h3>
+    <p class="chalk">Hello → مرحباً</p>
+    <p class="chalk">Hi → أهلاً</p>
+    <p class="chalk">Hey → هاي (غير رسمي جداً)</p>
+    <p class="chalk">Good morning → صباح الخير</p>
+    <p class="chalk">Good afternoon → مساء الخير (من الظهر حتى قبل المغرب)</p>
+    <p class="chalk">Good evening → مساء الخير (بعد المغرب)</p>
+    <p class="chalk">Good night → تصبح على خير (تستخدم عند وداع شخص قبل النوم)</p>
+    <p class="chalk">How are you? → كيف حالك؟</p>
+    <p class="chalk">How’s it going? → كيف الأمور؟ (غير رسمي)</p>
+    <p class="chalk">How do you do? → كيف حالك؟ (رسمي جداً)</p>
+    <p class="chalk">What’s up? / Wassup? → ما الأخبار؟ / شو في؟ (غير رسمي)</p>
+
+    <h3 class="chalk">2️⃣ تحيات غير رسمية بين الأصدقاء</h3>
+    <p class="chalk">Yo → هاي / أهلاً (غير رسمي جداً، بين شباب)</p>
+    <p class="chalk">Sup → اختصار لـ “What’s up?”</p>
+    <p class="chalk">Hiya → أهلاً (غير رسمي)</p>
+    <p class="chalk">Hey there → مرحباً هناك</p>
+    <p class="chalk">Long time no see → لم نلتق منذ فترة</p>
+    <p class="chalk">Howdy → مرحباً (شائع في الولايات المتحدة، له طابع ودود)</p>
+    <p class="chalk">How’s everything? → كيف كل شيء؟</p>
+
+    <h3 class="chalk">3️⃣ تحيات رسمية أو مهذبة</h3>
+    <p class="chalk">Greetings → تحية رسمية</p>
+    <p class="chalk">Good to see you → سررت برؤيتك</p>
+    <p class="chalk">Pleased to meet you → سعيد بلقائك (أول لقاء رسمي)</p>
+    <p class="chalk">How have you been? → كيف كنت منذ آخر لقاء؟</p>
+    <p class="chalk">It’s a pleasure to meet you → تشرفت بلقائك</p>
+
+    <h3 class="chalk">4️⃣ تحيات صباحية/مسائية محددة</h3>
+    <p class="chalk">Morning! → صباح الخير (غير رسمي)</p>
+    <p class="chalk">Afternoon! → مساء الخير (غير رسمي)</p>
+    <p class="chalk">Evening! → مساء الخير (غير رسمي)</p>
+    <p class="chalk">Rise and shine! → استيقظ وتألّق! (مرح صباحي)</p>
+    <p class="chalk">Have a nice day! → أتمنى لك يوماً سعيداً</p>
+
+    <h3 class="chalk">5️⃣ تحيات وداع</h3>
+    <p class="chalk">Bye / Goodbye → وداعاً</p>
+    <p class="chalk">See you → أراك لاحقاً</p>
+    <p class="chalk">See you later → أراك لاحقاً</p>
+    <p class="chalk">See you soon → أراك قريباً</p>
+    <p class="chalk">Take care → اعتنِ بنفسك</p>
+    <p class="chalk">Catch you later → أراك لاحقاً (غير رسمي)</p>
+    <p class="chalk">Farewell → وداعاً (رسمي وأدبي)</p>
+    <p class="chalk">Have a good one → أتمنى لك وقتاً طيباً (غير رسمي)</p>
+
+    <h3 class="chalk">6️⃣ تحيات للمكالمات أو الرسائل</h3>
+    <p class="chalk">Hello, this is [Name] speaking → مرحباً، معك [الاسم] (للمكالمات)</p>
+    <p class="chalk">Hi, how are you doing? → أهلاً، كيف حالك؟</p>
+    <p class="chalk">Hey! Long time no chat → هاي! لم نتحدث منذ فترة</p>
+    <p class="chalk">Greetings of the day → تحية اليوم (رسمي، للبريد)</p>
+
+    <!-- الفيديو -->
+    <div class="video">
+        <a href="https://www.youtube.com/watch?v=NrQUvUcNsnw&t=14s" target="_blank">
+            <img src="https://img.youtube.com/vi/NrQUvUcNsnw/hqdefault.jpg" alt="فيديو التحيات">
+        </a>
+        <p>اضغط على الصورة لمشاهدة الفيديو على YouTube</p>
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+for (var i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    panel.style.display = (panel.style.display === "block") ? "none" : "block";
+    var chalkTexts = panel.querySelectorAll('.chalk');
+    chalkTexts.forEach(function(el) {
+      el.classList.remove('typing');
+      void el.offsetWidth;
+      el.classList.add('typing');
+    });
+  });
+}
+</script>
+
+</body>
+</html>

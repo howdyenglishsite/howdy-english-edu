@@ -15,15 +15,25 @@ body {
   background: linear-gradient(160deg, #1e3c72, #2a5298);
   color: #f0f8ff;
   align-items: center;
-  overflow-x: hidden;
+  overflow: auto; /* يسمح بالتمرير عند التكبير */
+  
+  /* --- تكبير الموقع 5 مرات --- */
+  transform: scale(5);
+  transform-origin: top center;
+}
+
+/* --- جعل كل النصوص في الوسط --- */
+h1, h3, p, button, .video, .zoom-controls, .cover {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
 }
 
 /* --- العنوان الحيوي --- */
 .live-title {
   font-size: 48px;
   font-weight: bold;
-  text-align: center;
-  margin: 40px 0;
   background: linear-gradient(90deg, #00ff00, #00ffff, #00ff00);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -32,6 +42,7 @@ body {
   text-shadow: 0 0 15px #00ff00, 0 0 25px #00ffff, 0 0 35px #00cc99;
   display: inline-block;
 }
+
 @keyframes greenWave {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -95,7 +106,7 @@ body {
   padding: 14px 20px;
   margin: 10px auto;
   cursor: pointer;
-  text-align: right;
+  text-align: center;
   font-size: 18px;
   border: none;
   border-radius: 12px;
@@ -156,7 +167,7 @@ body {
 /* --- نصوص التحيات --- */
 p {
   font-family: 'Comic Sans MS', cursive;
-  color: #FFD700; /* أصفر بلوري قاتل */
+  color: #FFD700; /* أصفر بلوري */
   text-shadow: 1px 1px 2px #000; 
   margin: 6px 0;
 }
@@ -185,7 +196,6 @@ h3.chalk.typing {
 /* --- الفيديو --- */
 .video {
   margin: 20px 0;
-  text-align: center;
   perspective: 1000px;
 }
 .video img {
@@ -199,7 +209,6 @@ h3.chalk.typing {
   box-shadow: 0 15px 25px rgba(0,0,0,0.6);
 }
 .video p {
-  text-align: center;
   font-style: italic;
   color: #ddd;
   margin-top: 10px;
@@ -207,7 +216,6 @@ h3.chalk.typing {
 
 /* --- أزرار Zoom --- */
 .zoom-controls {
-  text-align: center;
   margin-bottom: 15px;
 }
 .zoom-controls button {
@@ -251,13 +259,12 @@ a { text-decoration: none; color: inherit; }
     <button class="accordion">التحيات</button>
     <div class="panel">
 
-      <!-- --- أزرار Zoom فوق --- -->
       <div class="zoom-controls">
         <button onclick="zoomText(this.parentElement.parentElement, 1)">Zoom +</button>
         <button onclick="zoomText(this.parentElement.parentElement, -1)">Zoom -</button>
       </div>
 
-      <!-- --- جميع التحيات الستة --- -->
+      <!-- جميع التحيات -->
       <h3 class="chalk typing">1️⃣ التحيات اليومية العامة</h3>
       <p>Hello → مرحباً</p>
       <p>Hi → أهلاً</p>
